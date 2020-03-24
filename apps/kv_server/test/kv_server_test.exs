@@ -13,7 +13,8 @@ defmodule KVServerTest do
     {:ok, socket} = :gen_tcp.connect('localhost', 4040, opts)
     %{socket: socket}
   end
-
+  
+  @tag :distributed
   test "server interaction", %{socket: socket} do
     assert send_and_recv(socket, "UNKNOWN shopping\r\n") ==
              "UNKNOWN COMMAND\r\n"
